@@ -33,6 +33,14 @@
   padding-top: 4px;
 }
 
+.badge.badge-light {
+  color: black;
+}
+
+.badge.badge-light.active {
+  color: white;
+}
+
 .modal-footer {
   display: block;
 }
