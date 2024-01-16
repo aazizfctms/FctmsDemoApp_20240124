@@ -49,6 +49,9 @@ namespace FctmsDemoApp.Infrastructure.Data.Migrations
 
                     b.Property<DateTime?>("Reminder")
                         .HasColumnType("TEXT");
+                    
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()

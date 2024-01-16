@@ -124,6 +124,18 @@
         </select>
       </div>
       <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <div class="row">
+          <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+            <input type="text"
+                   placeholder="Due Date"
+                   class="form-control"
+                   bsDatepicker
+                   [(ngModel)]="itemDetailsEditor.dueDate">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <label for="note">Note</label>
         <textarea id="note" class="form-control" rows="3" [(ngModel)]="itemDetailsEditor.note"></textarea>
       </div>

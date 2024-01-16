@@ -465,6 +465,10 @@
           "note": {
             "type": "string",
             "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -564,6 +568,10 @@
             "format": "int32"
           },
           "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "dueDate": {
             "type": "string",
             "nullable": true
           }

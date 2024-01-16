@@ -14,6 +14,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TodoComponent } from './todo/todo.component';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
   declarations: [
@@ -25,17 +26,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TodoComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'todo', component: TodoComponent }
+      {path: '', component: HomeComponent, pathMatch: 'full'},
+      {path: 'counter', component: CounterComponent},
+      {path: 'fetch-data', component: FetchDataComponent},
+      {path: 'todo', component: TodoComponent}
     ]),
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDatepickerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

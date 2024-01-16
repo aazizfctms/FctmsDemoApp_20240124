@@ -6,10 +6,11 @@ import { TodoListsClient, TodoItemsClient,
   CreateTodoItemCommand, UpdateTodoItemCommand, UpdateTodoItemDetailCommand
 } from '../web-api-client';
 
+
 @Component({
   selector: 'app-todo-component',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
   debug = false;
@@ -150,6 +151,7 @@ export class TodoComponent implements OnInit {
 
         this.selectedItem.priority = this.itemDetailsEditor.priority;
         this.selectedItem.note = this.itemDetailsEditor.note;
+        this.selectedItem.dueDate = this.itemDetailsEditor.dueDate;
         this.itemDetailsModalRef.hide();
         this.itemDetailsEditor = {};
       },

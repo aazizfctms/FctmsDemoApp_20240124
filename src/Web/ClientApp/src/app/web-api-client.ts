@@ -801,6 +801,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
     listId?: number;
     priority?: PriorityLevel;
     note?: string | undefined;
+    dueDate?: string | undefined;
 
     constructor(data?: IUpdateTodoItemDetailCommand) {
         if (data) {
@@ -817,6 +818,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
             this.listId = _data["listId"];
             this.priority = _data["priority"];
             this.note = _data["note"];
+            this.dueDate = _data["dueDate"];
         }
     }
 
@@ -833,6 +835,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
         data["listId"] = this.listId;
         data["priority"] = this.priority;
         data["note"] = this.note;
+        data["dueDate"] = this.dueDate;
         return data;
     }
 }
@@ -842,6 +845,7 @@ export interface IUpdateTodoItemDetailCommand {
     listId?: number;
     priority?: PriorityLevel;
     note?: string | undefined;
+    dueDate?: string | undefined;
 }
 
 export enum PriorityLevel {
@@ -1010,6 +1014,7 @@ export class TodoItemDto implements ITodoItemDto {
     done?: boolean;
     priority?: number;
     note?: string | undefined;
+    dueDate?: string | undefined;
 
     constructor(data?: ITodoItemDto) {
         if (data) {
@@ -1028,6 +1033,7 @@ export class TodoItemDto implements ITodoItemDto {
             this.done = _data["done"];
             this.priority = _data["priority"];
             this.note = _data["note"];
+            this.dueDate = _data["dueDate"];
         }
     }
 
@@ -1046,6 +1052,7 @@ export class TodoItemDto implements ITodoItemDto {
         data["done"] = this.done;
         data["priority"] = this.priority;
         data["note"] = this.note;
+        data["dueDate"] = this.dueDate;
         return data;
     }
 }
@@ -1057,6 +1064,7 @@ export interface ITodoItemDto {
     done?: boolean;
     priority?: number;
     note?: string | undefined;
+    dueDate?: string | undefined;
 }
 
 export class CreateTodoListCommand implements ICreateTodoListCommand {

@@ -185,6 +185,7 @@ namespace FctmsDemoApp.Infrastructure.Data.Migrations
                     Note = table.Column<string>(type: "TEXT", nullable: true),
                     Priority = table.Column<int>(type: "INTEGER", nullable: false),
                     Reminder = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Done = table.Column<bool>(type: "INTEGER", nullable: false),
                     Created = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
