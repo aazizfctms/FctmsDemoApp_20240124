@@ -313,6 +313,26 @@
               "nullable": true
             },
             "x-position": 1
+          },
+          {
+            "name": "TempCLow",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "TempCHigh",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 3
           }
         ],
         "responses": {

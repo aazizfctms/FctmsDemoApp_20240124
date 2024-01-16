@@ -520,7 +520,7 @@ export class TodoListsClient implements ITodoListsClient {
 }
 
 export interface IWeatherForecastsClient {
-    getWeatherForecasts(weather: string | null): Observable<WeatherForecast[]>;
+    getWeatherForecasts(weather: string | null, tempCLow: number | null | undefined, tempCHigh: number | null | undefined): Observable<WeatherForecast[]>;
 }
 
 @Injectable({
@@ -536,12 +536,16 @@ export class WeatherForecastsClient implements IWeatherForecastsClient {
         this.baseUrl = baseUrl ?? "";
     }
 
-    getWeatherForecasts(weather: string | null): Observable<WeatherForecast[]> {
+    getWeatherForecasts(weather: string | null, tempCLow: number | null | undefined, tempCHigh: number | null | undefined): Observable<WeatherForecast[]> {
         let url_ = this.baseUrl + "/api/WeatherForecasts?";
         if (weather === undefined)
             throw new Error("The parameter 'weather' must be defined.");
         else if(weather !== null)
             url_ += "Weather=" + encodeURIComponent("" + weather) + "&";
+        if (tempCLow !== undefined && tempCLow !== null)
+            url_ += "TempCLow=" + encodeURIComponent("" + tempCLow) + "&";
+        if (tempCHigh !== undefined && tempCHigh !== null)
+            url_ += "TempCHigh=" + encodeURIComponent("" + tempCHigh) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {

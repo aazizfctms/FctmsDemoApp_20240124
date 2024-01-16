@@ -5,13 +5,22 @@
 <p *ngIf="!forecasts?.length"><em>Loading...</em></p>
 
 <div class="row">
-  <div class="col-1">Weather</div>
-  <div class="col-4">
+  <div class="col-auto">Weather</div>
+  <div class="col-auto">
     <input [(ngModel)]="filters.weather" (ngModelChange)="filterChanged()">
   </div>
 </div>
+<div class="row">
+  <div class="col-auto">Temperature (C)</div>
+  <div class="col-auto">
+    <input type="number" class="form-control" placeholder="Low" [(ngModel)]="filters.tempCLow" (ngModelChange)="filterChanged()">
+  </div>
+  <div class="col-auto">
+    <input type="number" class="form-control" placeholder="High"  [(ngModel)]="filters.tempCHigh" (ngModelChange)="filterChanged()">
+  </div>
+</div>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length && forecasts[0].summary !== 'No Result'">
   <thead>
     <tr>
       <th>Date</th>
@@ -29,3 +38,5 @@
     </tr>
   </tbody>
 </table>
+
+<p *ngIf="forecasts.length && forecasts[0].summary == 'No Result'"><em>No Result</em></p>

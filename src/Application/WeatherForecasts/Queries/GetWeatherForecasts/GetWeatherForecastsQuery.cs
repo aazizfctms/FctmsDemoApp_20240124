@@ -3,6 +3,8 @@
 public record GetWeatherForecastsQuery() : IRequest<IEnumerable<WeatherForecast>>
 {
     public string Weather { get; set; } = "";
+    public int? TempCLow { get; set; }
+    public int? TempCHigh { get; set; }
 }
 
 public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecastsQuery, IEnumerable<WeatherForecast>>
@@ -35,6 +37,12 @@ public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecas
         new WeatherForecast() { Date = new DateTime(2024, 01, 30), TemperatureC = -13, Summary = "Freezing", },
         new WeatherForecast() { Date = new DateTime(2024, 01, 31), TemperatureC = 39, Summary = "Warm", }, 
     };
+    
+     private static readonly WeatherForecast[] NoData = new[]
+    {
+        new WeatherForecast() { Date = new DateTime(3001, 01, 01), TemperatureC = -275, Summary = "No Result", }
+        
+    };
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     public async Task<IEnumerable<WeatherForecast>> Handle(GetWeatherForecastsQuery request, CancellationToken cancellationToken)
@@ -48,6 +56,21 @@ public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecas
         if (string.IsNullOrWhiteSpace(request.Weather) == false)
         {
             result = result.Where(x => request.Weather.Equals(x.Summary, StringComparison.InvariantCultureIgnoreCase));
+        }
+        
+        if (request.TempCLow.HasValue)
+        {
+            result = result.Where(x => x.TemperatureC >= request.TempCLow);
+        }
+        
+        if (request.TempCHigh.HasValue)
+        {
+            result = result.Where(x => x.TemperatureC <= request.TempCHigh);
+        }
+
+        if (result.Any() == false)
+        {
+            result = NoData.AsEnumerable();
         }
         
         return result;

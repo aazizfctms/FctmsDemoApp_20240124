@@ -9,7 +9,9 @@ export class FetchDataComponent {
   public forecasts: WeatherForecast[] = [];
 
   public filters = {
-    weather: ""
+    weather: "",
+    tempCLow: null,
+    tempCHigh: null
   };
 
   constructor(private client: WeatherForecastsClient) {
@@ -21,9 +23,9 @@ export class FetchDataComponent {
   }
 
   private refresh() {
-    this.client.getWeatherForecasts(this.filters.weather).subscribe({
+    this.client.getWeatherForecasts(this.filters.weather, this.filters.tempCLow || null, this.filters.tempCHigh || null).subscribe({
       next: result => this.forecasts = result,
-      error: error => console.error(error)
+      error: error => console.error(error),
     });
   }
 }
