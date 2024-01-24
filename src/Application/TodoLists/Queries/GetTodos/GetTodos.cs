@@ -32,7 +32,12 @@ public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, TodosVm>
                 .AsNoTracking()
                 .ProjectTo<TodoListDto>(_mapper.ConfigurationProvider)
                 .OrderBy(t => t.Title)
-                .ToListAsync(cancellationToken)
+                .ToListAsync(cancellationToken),
+            
+            NextDue = await _context.TodoItems
+                .Where(x => x.Done == false && x.DueDate >= DateTime.UtcNow)
+                .OrderBy(x => x.DueDate)
+                .SingleOrDefaultAsync(cancellationToken),
         };
     }
 }

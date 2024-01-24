@@ -6,6 +6,16 @@
 
 <div *ngIf="lists">
 
+  <div class="alert alert-info">
+    <h5>Next due task</h5>
+    <p *ngIf="nextDue">
+      <b>{{ nextDue.title }}</b> due {{ nextDue.dueDate | date }}
+    </p>
+    <p *ngIf="!nextDue">
+      <em>No tasks due! Congrats!</em>
+    </p>
+  </div>
+
   <div class="row">
     <div class="col-sm-4">
       <div class="clearfix">

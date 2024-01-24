@@ -1,9 +1,10 @@
 import { Component, TemplateRef, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { TodoListsClient, TodoItemsClient,
+import {
+  TodoListsClient, TodoItemsClient,
   TodoListDto, TodoItemDto, LookupDto,
   CreateTodoListCommand, UpdateTodoListCommand,
-  CreateTodoItemCommand, UpdateTodoItemCommand, UpdateTodoItemDetailCommand
+  CreateTodoItemCommand, UpdateTodoItemCommand, UpdateTodoItemDetailCommand, TodoItem
 } from '../web-api-client';
 
 
@@ -16,6 +17,7 @@ export class TodoComponent implements OnInit {
   debug = false;
   lists: TodoListDto[];
   priorityLevels: LookupDto[];
+  nextDue: TodoItem | undefined;
   selectedList: TodoListDto;
   selectedItem: TodoItemDto;
   newListEditor: any = {};
@@ -37,6 +39,7 @@ export class TodoComponent implements OnInit {
       result => {
         this.lists = result.lists;
         this.priorityLevels = result.priorityLevels;
+        this.nextDue = result.nextDue;
         if (this.lists.length) {
           this.selectedList = this.lists[0];
         }
